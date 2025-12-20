@@ -173,6 +173,12 @@
         .info-text h1 { font-size: 28px; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; }
         .info-text p { font-size: 15px; line-height: 1.7; margin-bottom: 20px; color: #333; font-weight: 600; }
         .info-text .info-hero { width: 100%; aspect-ratio: 1; object-fit: cover; margin: 0 0 40px 0; display: block; }
+        @media (min-width: 969px) {
+            .info-text { max-width: 1200px; }
+            .info-text h1 { display: none; }
+            .info-text p { font-size: 18px; line-height: 1.9; }
+            .info-text .info-hero { aspect-ratio: 16/9; margin: 0 0 60px 0; }
+        }
     </style>
 </head>
 <body>
