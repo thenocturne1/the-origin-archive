@@ -79,9 +79,18 @@
         .project-detail-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
         @media (max-width: 968px) {
             .detail { padding: 40px 25px; max-width: 100%; }
-            .project-detail-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-            .project-detail-grid > div:last-child { order: -1; }
-            .project-detail-grid img { max-height: 60vh !important; width: 100% !important; object-fit: cover !important; }
+            .project-detail-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 40px !important; 
+            }
+            .project-detail-grid > div:first-child { order: 2; }
+            .project-detail-grid > div:last-child { order: 1; }
+            .project-detail-grid img { 
+                max-height: none !important; 
+                width: 100% !important; 
+                height: auto !important;
+                object-fit: cover !important; 
+            }
         }
         @media (min-width: 969px) {
             .detail { padding: 60px 80px; }
@@ -132,9 +141,19 @@
         .artist-header { display: flex; gap: 40px; margin-bottom: 40px; }
         .artist-detail-grid { display: grid; grid-template-columns: auto 1fr; gap: 60px; align-items: start; }
         @media (max-width: 968px) {
-            .artist-detail-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+            .artist-detail-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 40px !important; 
+            }
+            .artist-detail-grid > div:first-child { order: 1; }
+            .artist-detail-grid > div:last-child { order: 2; }
+            .artist-detail-grid img { 
+                max-height: none !important; 
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+            }
             .artist-header { flex-direction: column; gap: 20px; }
-            .artist-detail-grid img { max-height: 70vh !important; }
         }
         @media (min-width: 969px) {
             .artist-detail-grid { gap: 80px; }
