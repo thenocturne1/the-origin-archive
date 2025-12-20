@@ -37,21 +37,33 @@
         .s4 { background: #FF6B9D; }
         .content { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
         @media (max-width: 768px) {
-            .content { padding: 30px 20px; }
-            header { padding: 15px 20px; }
-            .logo { font-size: 18px; }
-            .search-btn { font-size: 11px; }
-            .hero-title { font-size: 28px; }
-            .page-title { font-size: 22px; }
+            .content { padding: 40px 25px; }
+            header { padding: 20px 25px; }
+            .logo { font-size: 20px; }
+            .search-btn { font-size: 12px; }
+            .hero-title { font-size: 32px; }
+            .page-title { font-size: 24px; margin-bottom: 35px; }
+        }
+        @media (min-width: 769px) {
+            .content { padding: 80px 60px; }
         }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; margin-top: 40px; }
         @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; gap: 25px; margin-top: 30px; }
+            .grid { grid-template-columns: 1fr; gap: 40px; margin-top: 40px; }
+        }
+        @media (min-width: 769px) {
+            .grid { gap: 50px; margin-top: 50px; }
         }
         .showroom-grid { display: flex; flex-direction: column; gap: 80px; margin-top: 40px; align-items: flex-start; }
         .showroom-grid .card { width: auto; max-width: 100%; cursor: pointer; text-align: left; }
         .showroom-grid .card-img { width: auto; height: auto; max-width: 100%; max-height: 90vh; object-fit: contain; background: #f5f5f5; margin-bottom: 20px; aspect-ratio: auto; display: block; }
         .works-grid { display: flex; flex-direction: column; gap: 80px; margin-top: 40px; max-width: 100%; align-items: flex-start; }
+        @media (max-width: 968px) {
+            .works-grid { gap: 60px; margin-top: 50px; }
+        }
+        @media (min-width: 969px) {
+            .works-grid { gap: 100px; margin-top: 60px; }
+        }
         .work-item { display: flex; flex-direction: column; align-items: flex-start; width: auto; max-width: 100%; }
         .work-item img { width: auto; height: auto; max-width: 100%; max-height: 90vh; object-fit: contain; background: #f5f5f5; margin-bottom: 20px; display: block; }
         .work-info { text-align: center; max-width: 800px; }
@@ -66,9 +78,14 @@
         .detail { max-width: 1200px; margin: 0 auto; padding: 40px; }
         .project-detail-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
         @media (max-width: 968px) {
-            .detail { padding: 30px 20px; }
-            .project-detail-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+            .detail { padding: 40px 25px; max-width: 100%; }
+            .project-detail-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
             .project-detail-grid > div:last-child { order: -1; }
+            .project-detail-grid img { max-height: 60vh !important; width: 100% !important; object-fit: cover !important; }
+        }
+        @media (min-width: 969px) {
+            .detail { padding: 60px 80px; }
+            .project-detail-grid { gap: 80px; }
         }
         .back { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; margin-bottom: 30px; display: inline-block; }
         .back:hover { text-decoration: underline; }
@@ -115,13 +132,21 @@
         .artist-header { display: flex; gap: 40px; margin-bottom: 40px; }
         .artist-detail-grid { display: grid; grid-template-columns: auto 1fr; gap: 60px; align-items: start; }
         @media (max-width: 968px) {
-            .artist-detail-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+            .artist-detail-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
             .artist-header { flex-direction: column; gap: 20px; }
+            .artist-detail-grid img { max-height: 70vh !important; }
+        }
+        @media (min-width: 969px) {
+            .artist-detail-grid { gap: 80px; }
         }
         .artist-img { width: 280px; height: 280px; object-fit: cover; }
         .artist-name { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
         .artist-role { font-size: 14px; color: #666; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
         .artist-bio { font-size: 15px; line-height: 1.6; color: #333; }
+        @media (max-width: 968px) {
+            .artist-name { font-size: 26px; }
+            .artist-bio { font-size: 16px; line-height: 1.7; }
+        }
         .info-hero { display: none; }
         .info-text { max-width: 800px; margin: 0 auto; }
         .info-text h1 { font-size: 28px; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; }
