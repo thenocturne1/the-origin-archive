@@ -1,287 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>the Origin</title>
-
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: Arial, sans-serif;
-  color:#000;
-  background:#fff;
-}
-
-/* ================= HEADER ================= */
-header {
-  padding:20px 40px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#fff;
-  border-bottom:1px solid #e0e0e0;
-}
-header.showroom-header { background:#50C878; border-bottom:none; }
-header.activity-header { background:#7B68EE; border-bottom:none; }
-header.info-header { background:#FFB347; border-bottom:none; }
-header.shop-header { background:#FF6B9D; border-bottom:none; }
-
-header.showroom-header *,
-header.activity-header *,
-header.info-header *,
-header.shop-header * {
-  color:#fff;
-}
-
-.logo {
-  font-size:22px;
-  font-weight:700;
-  text-transform:uppercase;
-  cursor:pointer;
-}
-.search-btn {
-  font-size:12px;
-  text-transform:uppercase;
-  cursor:pointer;
-}
-
-/* ================= GLOBAL ================= */
-.content {
-  max-width:1400px;
-  margin:0 auto;
-  padding:60px 40px;
-}
-.page-title {
-  font-size:28px;
-  font-weight:700;
-  text-transform:uppercase;
-  margin-bottom:40px;
-}
-.back {
-  font-size:12px;
-  text-transform:uppercase;
-  cursor:pointer;
-  margin-bottom:40px;
-  display:inline-block;
-}
-
-/* ================= HOME ================= */
-.hero {
-  height:calc(100vh - 61px);
-  display:flex;
-  flex-direction:column;
-}
-.hero-item {
-  flex:1;
-  display:flex;
-  align-items:flex-end;
-  padding:40px;
-  cursor:pointer;
-}
-.hero-title {
-  font-size:42px;
-  font-weight:300;
-  color:#fff;
-  text-transform:uppercase;
-}
-.s1 { background:#7B68EE; }
-.s2 { background:#FFB347; }
-.s3 { background:#50C878; }
-.s4 { background:#FF6B9D; }
-
-/* ================= SHOWROOM GRID ================= */
-/* Künstler nebeneinander */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:40px;
-}
-
-.card {
-  cursor:pointer;
-  text-align:center;
-}
-
-/* KEIN quadratisches Bild */
-.card-img {
-  width:100%;
-  height:400px;              /* festes Hochformat */
-  object-fit:cover;          /* Preview darf schneiden */
-  background:#f5f5f5;
-  margin-bottom:14px;
-}
-
-.card-title {
-  font-size:14px;
-  font-weight:600;
-  text-transform:uppercase;
-}
-.card-sub {
-  font-size:12px;
-  color:#666;
-}
-
-/* ================= ARTIST MONOGRAPHY ================= */
-.artist-header {
-  display:flex;
-  gap:40px;
-  margin-bottom:80px;
-}
-.artist-img {
-  width:280px;
-  height:280px;
-  object-fit:cover;
-}
-.artist-name {
-  font-size:32px;
-  font-weight:700;
-}
-.artist-role {
-  font-size:14px;
-  color:#666;
-  text-transform:uppercase;
-  margin-bottom:20px;
-}
-.artist-bio {
-  max-width:600px;
-  line-height:1.6;
-}
-
-/* Werke fortlaufend */
-.works-grid {
-  display:flex;
-  flex-direction:column;
-  gap:120px;
-  align-items:center;
-}
-.work-item img {
-  max-width:100vw;
-  max-height:85vh;
-  object-fit:contain;      /* KEIN Beschnitt */
-  background:#f5f5f5;
-}
-.work-info {
-  text-align:center;
-  margin-top:20px;
-}
-.work-title {
-  font-weight:600;
-}
-.work-details {
-  font-size:13px;
-  color:#666;
-}
-
-/* ================= MOBILE ================= */
-@media (max-width:768px) {
-  .card-img { height:320px; }
-  .artist-header { flex-direction:column; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the Origin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; color: #000; background: #fff; }
+        header { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #e0e0e0; }
+        header.activity-header { background: #7B68EE; border-bottom: none; }
+        header.info-header { background: #FFB347; border-bottom: none; }
+        header.showroom-header { background: #50C878; border-bottom: none; }
+        header.shop-header { background: #FF6B9D; border-bottom: none; }
+        header.activity-header .logo, header.activity-header .search-btn, header.info-header .logo, header.info-header .search-btn, header.showroom-header .logo, header.showroom-header .search-btn, header.shop-header .logo, header.shop-header .search-btn { color: #fff; }
+        .logo { font-size: 22px; font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: -0.5px; }
+        .search-btn { font-size: 12px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
+        .search-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 300; display: none; align-items: flex-start; justify-content: center; padding-top: 100px; }
+        .search-overlay.active { display: flex; }
+        .search-box { width: 600px; }
+        .search-input { width: 100%; background: transparent; border: none; border-bottom: 2px solid #fff; color: #fff; font-size: 28px; padding: 15px 0; outline: none; font-family: Arial, sans-serif; }
+        .search-input::placeholder { color: rgba(255,255,255,0.5); }
+        .search-close { position: absolute; top: 40px; right: 50px; color: #fff; font-size: 32px; cursor: pointer; }
+        .search-results { margin-top: 40px; }
+        .search-result { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.2); color: #fff; cursor: pointer; }
+        .search-result:hover { opacity: 0.7; }
+        .search-result-title { font-size: 18px; font-weight: 700; margin-bottom: 5px; }
+        .search-result-desc { font-size: 14px; opacity: 0.8; }
+        .hero { display: flex; flex-direction: column; height: calc(100vh - 61px); }
+        .hero-item { flex: 1; display: flex; align-items: flex-end; padding: 40px; cursor: pointer; transition: opacity 0.3s; position: relative; }
+        .hero-item::before { display: none; }
+        .hero-item:hover { opacity: 0.9; }
+        .hero-title { font-size: 42px; font-weight: 300; color: #fff; text-transform: uppercase; letter-spacing: 2px; position: relative; }
+        .s1 { background: #7B68EE; }
+        .s2 { background: #FFB347; }
+        .s3 { background: #50C878; }
+        .s4 { background: #FF6B9D; }
+        .content { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; margin-top: 40px; }
+        .showroom-grid { display: flex; flex-direction: column; gap: 80px; margin-top: 40px; align-items: center; }
+        .showroom-grid .card { width: 100%; max-width: 100%; cursor: pointer; text-align: center; }
+        .showroom-grid .card-img { width: 100%; max-width: 100%; height: auto; max-height: 85vh; object-fit: contain; background: #f5f5f5; margin-bottom: 20px; aspect-ratio: auto; }
+        .works-grid { display: flex; flex-direction: column; gap: 80px; margin-top: 40px; max-width: 100%; }
+        .work-item { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .work-item img { width: 100%; max-width: 100%; height: auto; max-height: 85vh; object-fit: contain; background: #f5f5f5; margin-bottom: 20px; }
+        .work-info { text-align: center; max-width: 800px; }
+        .work-title { font-weight: 600; font-size: 18px; margin-bottom: 8px; }
+        .work-details { font-size: 14px; color: #666; }
+        .card { cursor: pointer; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-4px); }
+        .card-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; margin-bottom: 12px; }
+        .card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .card-sub { font-size: 12px; color: #666; margin-bottom: 2px; }
+        .card-price { font-size: 16px; font-weight: 700; margin-top: 8px; }
+        .detail { max-width: 1200px; margin: 0 auto; padding: 40px; }
+        .back { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; margin-bottom: 30px; display: inline-block; }
+        .back:hover { text-decoration: underline; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 40px; }
+        .product-img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+        .product-title { font-size: 32px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
+        .product-artist { font-size: 16px; color: #666; margin-bottom: 20px; }
+        .product-price { font-size: 28px; font-weight: 700; margin-bottom: 25px; }
+        .product-desc { font-size: 15px; line-height: 1.6; margin-bottom: 25px; color: #333; }
+        .qty { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .qty-btn { width: 35px; height: 35px; border: 1px solid #000; background: #fff; cursor: pointer; font-size: 18px; }
+        .qty-input { width: 50px; height: 35px; border: 1px solid #000; text-align: center; font-size: 14px; }
+        .btn { padding: 14px 30px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s; }
+        .btn-black { background: #000; color: #fff; }
+        .btn-black:hover { background: #333; }
+        .btn-white { background: #fff; color: #000; border: 1px solid #000; margin-top: 10px; }
+        .btn-white:hover { background: #f5f5f5; }
+        .cart-panel { position: fixed; top: 0; right: -450px; width: 450px; height: 100vh; background: #fff; box-shadow: -2px 0 10px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 200; overflow-y: auto; }
+        .cart-panel.open { right: 0; }
+        .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; display: none; }
+        .cart-overlay.open { display: block; }
+        .cart-header { padding: 25px; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center; }
+        .cart-title { font-size: 18px; font-weight: 700; text-transform: uppercase; }
+        .cart-close { font-size: 24px; cursor: pointer; }
+        .cart-body { padding: 25px; }
+        .cart-empty { text-align: center; color: #999; padding: 40px 20px; }
+        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0; }
+        .cart-item-img { width: 80px; height: 80px; object-fit: cover; }
+        .cart-item-info { flex: 1; }
+        .cart-item-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+        .cart-item-price { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+        .cart-item-qty { display: flex; align-items: center; gap: 8px; }
+        .cart-item-qty button { width: 22px; height: 22px; border: 1px solid #000; background: #fff; cursor: pointer; font-size: 12px; }
+        .cart-item-qty input { width: 35px; height: 22px; border: 1px solid #000; text-align: center; font-size: 11px; }
+        .cart-remove { color: #999; font-size: 11px; cursor: pointer; text-decoration: underline; margin-top: 6px; display: inline-block; }
+        .cart-remove:hover { color: #000; }
+        .cart-total { margin-top: 25px; padding-top: 20px; border-top: 2px solid #000; }
+        .cart-total-row { display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; margin-bottom: 20px; }
+        .notif { position: fixed; top: 20px; right: 20px; background: #000; color: #fff; padding: 15px 25px; border-radius: 3px; z-index: 300; font-size: 13px; }
+        .page-title { font-size: 28px; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 0.5px; }
+        .artist-header { display: flex; gap: 40px; margin-bottom: 40px; }
+        .artist-img { width: 280px; height: 280px; object-fit: cover; }
+        .artist-name { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+        .artist-role { font-size: 14px; color: #666; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .artist-bio { font-size: 15px; line-height: 1.6; color: #333; }
+        .info-hero { display: none; }
+        .info-text { max-width: 800px; margin: 0 auto; }
+        .info-text h1 { font-size: 28px; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; }
+        .info-text p { font-size: 15px; line-height: 1.7; margin-bottom: 20px; color: #333; font-weight: 600; }
+        .info-text .info-hero { width: 100%; aspect-ratio: 1; object-fit: cover; margin: 0 0 40px 0; display: block; }
+    </style>
 </head>
-
 <body>
-
-<div id="app"></div>
-
-<script>
-let view='home', detail=null;
-
-const data = {
-  artists: [
-    {
-      id:'a2',
-      name:'Johannes Weiß',
-      role:'Artist',
-      img:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/DIE_QUELLE_IST_DER_STEIN.jpg',
-      bio:'His practice encompasses sculpture, video and performative works.',
-      works:[
-        {t:'Die Quelle ist der Stein',d:'2017',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/DIE_QUELLE_IST_DER_STEIN.jpg'},
-        {t:'Echosammler',d:'2016',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/ECHOSAMMLER.jpg'},
-        {t:'Erzähler',d:'2016',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/ERZÄHLER.jpg'},
-        {t:'Fontäne',d:'2015',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/FONTÄNE.jpg'},
-        {t:'Schmetterlingsknochen',d:'2017',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/SCHMETTERLINGSKNÖCHEN.jpg'}
-      ]
-    }
-  ]
-};
-
-function render(){
-  const app=document.getElementById('app');
-
-  /* HOME */
-  if(view==='home'){
-    app.innerHTML=`
-      <header>
-        <div class="logo">the Origin</div>
-      </header>
-      <div class="hero">
-        <div class="hero-item s3" onclick="go('showroom')">
-          <div class="hero-title">Showroom</div>
-        </div>
-      </div>`;
-  }
-
-  /* SHOWROOM */
-  if(view==='showroom'){
-    app.innerHTML=`
-      <header class="showroom-header">
-        <div class="logo" onclick="go('home')">the Origin</div>
-      </header>
-      <div class="content">
-        <div class="page-title">Showroom</div>
-        <div class="grid">
-          ${data.artists.map(a=>`
-            <div class="card" onclick="openArtist('${a.id}')">
-              <img src="${a.img}" class="card-img">
-              <div class="card-title">${a.name}</div>
-              <div class="card-sub">${a.role}</div>
-            </div>
-          `).join('')}
-        </div>
-      </div>`;
-  }
-
-  /* ARTIST MONOGRAPHY (ohne Header!) */
-  if(view==='artist'){
-    const a=data.artists.find(x=>x.id===detail);
-    app.innerHTML=`
-      <div class="content">
-        <div class="back" onclick="go('showroom')">← Back to Showroom</div>
-
-        <div class="artist-header">
-          <img src="${a.img}" class="artist-img">
-          <div>
-            <div class="artist-name">${a.name}</div>
-            <div class="artist-role">${a.role}</div>
-            <div class="artist-bio">${a.bio}</div>
-          </div>
-        </div>
-
-        <div class="works-grid">
-          ${a.works.map(w=>`
-            <div class="work-item">
-              <img src="${w.i}">
-              <div class="work-info">
-                <div class="work-title">${w.t}</div>
-                <div class="work-details">${w.d}</div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>`;
-  }
-}
-
-function go(v){ view=v; window.scrollTo(0,0); render(); }
-function openArtist(id){ detail=id; view='artist'; render(); }
-
-render();
-</script>
-
+    <div id="app"></div>
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <div id="cartPanel" class="cart-panel"></div>
+    <script>
+        let view='home',detail=null,cart=[],qty=1;
+        const data={projects:[{id:'p1',title:'Le Mentir – Vrai',sub:'Curated by Elena von Hessen',date:'25.11. – 9 December 2025',loc:'Via Orti 25, Milano',img:'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800',desc:'Explores the intersection between truth and fiction in contemporary art practice.'},{id:'p2',title:'Das Blaue meines Bruders',sub:'Pandora Gallery Berlin',date:'Group Exhibition',loc:'Mittenwalder Str. 6, Berlin',img:'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=800',desc:'A collective exhibition about identity, memory and family bonds.'}],artists:[{id:'a1',name:'Elena von Hessen',role:'Artist & Curator',img:'https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400',bio:'Works at the intersection of painting and installation.',works:[{t:'Fragmente I',d:'2024, Oil on canvas, 120x100cm',i:'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=400'}]},{id:'a2',name:'Johannes Weiß',role:'Artist',img:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/DIE_QUELLE_IST_DER_STEIN.jpg',bio:'His practice encompasses sculpture, video and performative works.',works:[{t:'Die Quelle ist der Stein',d:'2017',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/DIE_QUELLE_IST_DER_STEIN.jpg'},{t:'Echosammler',d:'2016',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/ECHOSAMMLER.jpg'},{t:'Erzähler',d:'2016',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/ERZÄHLER.jpg'},{t:'Fontäne',d:'2015',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/FONTÄNE.jpg'},{t:'Patrone',d:'2015',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/PATRONE.jpg'},{t:'Schmetterlingsknöchen',d:'2017',i:'https://raw.githubusercontent.com/thenocturne1/the-origin-archive/main/JohannesWeiss/SCHMETTERLINGSKNÖCHEN.jpg'}]}],products:[{id:'s1',title:'Fragmente I Print',artist:'Elena von Hessen',price:350,img:'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600',desc:'Limited edition of 50 prints.'},{id:'s2',title:'Le Mentir-Vrai Catalogue',artist:'Various Artists',price:45,img:'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600',desc:'Exhibition catalogue, 120 pages.'},{id:'s3',title:'Temporal Structures',artist:'Johannes Weiß',price:2800,img:'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=600',desc:'Original artwork, unique piece.'},{id:'s4',title:'Chromatic Fields',artist:'Marco Meiran',price:280,img:'https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600',desc:'High-quality reproduction.'}]};
+        function render(){const app=document.getElementById('app');if(view==='home'){app.innerHTML=`<header><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="hero"><div class="hero-item s1" onclick="go('activity')"><div class="hero-title">What's On</div></div><div class="hero-item s2" onclick="go('info')"><div class="hero-title">Info</div></div><div class="hero-item s3" onclick="go('showroom')"><div class="hero-title">Showroom</div></div><div class="hero-item s4" onclick="go('shop')"><div class="hero-title">Shop</div></div></div>`;}else if(view==='activity'){app.innerHTML=`<header class="activity-header"><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="content"><div class="page-title">What's On</div><div class="grid">${data.projects.map(p=>`<div class="card" onclick="showDetail('project','${p.id}')"><img src="${p.img}" class="card-img"><div class="card-title">${p.title}</div><div class="card-sub">${p.sub}</div><div class="card-sub">${p.date}</div><div class="card-sub">${p.loc}</div></div>`).join('')}</div></div>`;}else if(view==='projectDetail'){const p=data.projects.find(x=>x.id===detail);app.innerHTML=`<header class="activity-header"><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="detail"><div class="back" onclick="go('activity')">← Back to What's On</div><img src="${p.img}" style="width:100%;height:400px;object-fit:cover;margin-bottom:30px"><h1 style="font-size:36px;font-weight:700;margin-bottom:20px">${p.title}</h1><p style="font-size:15px;line-height:1.7;margin-bottom:15px;color:#333">${p.desc}</p><p style="font-size:15px;color:#666">${p.date} • ${p.loc}</p></div>`;}else if(view==='showroom'){app.innerHTML=`<header class="showroom-header"><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="content"><div class="page-title">Showroom</div><div class="grid">${data.artists.map(a=>`<div class="card" onclick="showDetail('artist','${a.id}')"><img src="${a.img}" class="card-img"><div class="card-title">${a.name}</div><div class="card-sub">${a.role}</div></div>`).join('')}</div></div>`;}else if(view==='artistDetail'){const a=data.artists.find(x=>x.id===detail);app.innerHTML=`<header class="showroom-header"><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="detail"><div class="back" onclick="go('showroom')">← Back to Showroom</div><div class="artist-header"><img src="${a.img}" class="artist-img"><div><div class="artist-name">${a.name}</div><div class="artist-role">${a.role}</div><div class="artist-bio">${a.bio}</div></div></div><h3 style="font-size:20px;font-weight:700;margin-bottom:20px;text-transform:uppercase">Selected Works</h3><div class="grid">${a.works.map(w=>`<div><img src="${w.i}" style="width:100%;aspect-ratio:3/4;object-fit:contain;margin-bottom:10px;background:#f5f5f5"><div style="font-weight:600;font-size:14px;margin-bottom:4px">${w.t}</div><div style="font-size:12px;color:#666">${w.d}</div></div>`).join('')}</div></div>`;}else if(view==='info'){app.innerHTML=`<header class="info-header"><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="content"><div class="info-text"><h1>Info</h1><img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=1400" class="info-hero"><p>"The Origin" is a process-oriented exhibition and exchange project in development, initiated by the artists Elena von Hessen and Johannes Weiß.</p><p>The impulse for this collaboration sprang from a personal artistic network: the two initiators were connected through the mediation of their befriended artist colleague, Nuscha.</p><p>The central aim of the project is to establish a creative synergy between the art scenes of Berlin and Milan.</p><p>"The Origin" places great value on the processual nature of artistic creation itself.</p><p>The project consciously adopts an experimental mode.</p><p>By building a bridge between two significant European art centres, "The Origin" aims to place local specificities into a broader context.</p></div></div>`;}else if(view==='shop'){app.innerHTML=`<header class="shop-header"><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="content"><div class="page-title">Shop</div><div class="grid">${data.products.map(p=>`<div class="card"><img src="${p.img}" class="card-img" onclick="showDetail('product','${p.id}')"><div class="card-title">${p.title}</div><div class="card-sub">${p.artist}</div><div class="card-price">€${p.price}</div><button class="btn btn-black" style="width:100%" onclick="addCart('${p.id}')">Add to Cart</button><button class="btn btn-white" style="width:100%" onclick="showDetail('product','${p.id}')">View Details</button></div>`).join('')}</div></div>`;}else if(view==='productDetail'){const p=data.products.find(x=>x.id===detail);app.innerHTML=`<header class="shop-header"><div class="logo" onclick="go('home')">the Origin</div><div class="search-btn" onclick="openSearch()">Search</div></header><div class="detail"><div class="back" onclick="go('shop')">← Back to Shop</div><div class="product-grid"><img src="${p.img}" class="product-img"><div><div class="product-title">${p.title}</div><div class="product-artist">${p.artist}</div><div class="product-price">€${p.price}</div><div class="product-desc">${p.desc}</div><div class="qty"><button class="qty-btn" onclick="qty=Math.max(1,qty-1);render()">−</button><input type="number" class="qty-input" value="${qty}" readonly><button class="qty-btn" onclick="qty=Math.min(10,qty+1);render()">+</button></div><button class="btn btn-black" style="width:100%;padding:16px" onclick="addCart('${p.id}',qty)">Add to Cart</button></div></div></div>`;}renderCart();}
+        function renderCart(){const panel=document.getElementById('cartPanel'),total=cart.reduce((s,i)=>s+(i.price*i.qty),0);panel.innerHTML=`<div class="cart-header"><div class="cart-title">Cart</div><div class="cart-close" onclick="closeCart()">×</div></div><div class="cart-body">${cart.length===0?'<div class="cart-empty">Your cart is empty</div>':cart.map((it,i)=>`<div class="cart-item"><img src="${it.img}" class="cart-item-img"><div class="cart-item-info"><div class="cart-item-title">${it.title}</div><div class="cart-item-price">€${it.price}</div><div class="cart-item-qty"><button onclick="updateQty(${i},-1)">−</button><input type="number" value="${it.qty}" readonly><button onclick="updateQty(${i},1)">+</button></div><span class="cart-remove" onclick="removeItem(${i})">Remove</span></div></div>`).join('')}${cart.length>0?`<div class="cart-total"><div class="cart-total-row"><span>Total:</span><span>€${total}</span></div><button class="btn btn-black" style="width:100%;padding:16px" onclick="checkout()">Checkout</button></div>`:''}</div>`;}
+        function go(v){view=v;window.scrollTo(0,0);render();}
+        function showDetail(type,id){detail=id;view=type==='project'?'projectDetail':type==='artist'?'artistDetail':'productDetail';window.scrollTo(0,0);render();}
+        function addCart(id,q=1){const p=data.products.find(x=>x.id===id),existing=cart.find(x=>x.id===id);if(existing)existing.qty+=q;else cart.push({...p,qty:q});notify('Added to cart!');qty=1;render();}
+        function updateQty(i,c){cart[i].qty=Math.max(1,cart[i].qty+c);render();}
+        function removeItem(i){cart.splice(i,1);render();}
+        function openCart(){document.getElementById('cartPanel').classList.add('open');document.getElementById('cartOverlay').classList.add('open');}
+        function closeCart(){document.getElementById('cartPanel').classList.remove('open');document.getElementById('cartOverlay').classList.remove('open');}
+        function checkout(){alert('Thank you for your order!');cart=[];closeCart();render();}
+        function notify(msg){const n=document.createElement('div');n.className='notif';n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),2000);}
+        function openSearch(){const overlay=document.createElement('div');overlay.className='search-overlay active';overlay.id='searchOverlay';overlay.innerHTML=`<div class="search-close" onclick="closeSearch()">×</div><div class="search-box"><input type="text" class="search-input" placeholder="Search..." id="searchInput"><div class="search-results" id="searchResults"></div></div>`;document.body.appendChild(overlay);setTimeout(()=>document.getElementById('searchInput').focus(),100);document.getElementById('searchInput').addEventListener('input',(e)=>{const q=e.target.value.toLowerCase(),all=[...data.projects.map(p=>({title:p.title,desc:p.sub,type:'project',id:p.id})),...data.artists.map(a=>({title:a.name,desc:a.role,type:'artist',id:a.id})),...data.products.map(p=>({title:p.title,desc:p.artist,type:'product',id:p.id}))],res=all.filter(i=>i.title.toLowerCase().includes(q)||i.desc.toLowerCase().includes(q));document.getElementById('searchResults').innerHTML=res.map(r=>`<div class="search-result" onclick="searchGo('${r.type}','${r.id}')"><div class="search-result-title">${r.title}</div><div class="search-result-desc">${r.desc}</div></div>`).join('');});overlay.addEventListener('click',(e)=>{if(e.target.id==='searchOverlay')closeSearch();});}
+        function closeSearch(){const s=document.getElementById('searchOverlay');if(s)s.remove();}
+        function searchGo(type,id){detail=id;view=type==='project'?'projectDetail':type==='artist'?'artistDetail':'productDetail';closeSearch();window.scrollTo(0,0);render();}
+        document.getElementById('cartOverlay').addEventListener('click',closeCart);
+        render();
+    </script>
 </body>
 </html>
