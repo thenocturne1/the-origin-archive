@@ -180,10 +180,14 @@
         .artist-img { width: 280px; height: 280px; object-fit: cover; }
         .artist-name { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
         .artist-role { font-size: 14px; color: #666; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .artist-bio { font-size: 15px; line-height: 1.6; color: #333; }
+        .artist-bio { font-size: 13px; line-height: 1.5; color: #333; letter-spacing: -0.2px; }
         @media (max-width: 968px) {
             .artist-name { font-size: 26px; }
-            .artist-bio { font-size: 16px; line-height: 1.7; }
+            .artist-bio { font-size: 14px; line-height: 1.6; }
+        }
+        @media (min-width: 969px) {
+            .artist-name { font-size: 14px; font-weight: 400; text-transform: none; letter-spacing: 0; margin-bottom: 20px; }
+            .artist-bio { font-size: 13px; line-height: 2.0; letter-spacing: 0; }
         }
         .info-hero { display: none; }
         .info-text { max-width: 800px; margin: 0 auto; }
